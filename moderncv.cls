@@ -1,5 +1,5 @@
 %% start of file `moderncv.cls'.
-%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2021 moderncv maintainers (github.com/moderncv).
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com), 2020-2022 moderncv maintainers (github.com/moderncv).
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License version 1.3c,
@@ -10,7 +10,7 @@
 %                identification
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{moderncv}[2021-12-16 v2.3.0 modern curriculum vitae and letter document class]
+\ProvidesClass{moderncv}[2022-02-21 v2.3.1 modern curriculum vitae and letter document class]
 
 
 %-------------------------------------------------------------------------------
@@ -114,7 +114,8 @@
     bookmarksopen = true,
     bookmarksdepth= 2,% to show sections and subsections
     pdfauthor     = {\@firstname{}~\@lastname{}},
-    pdftitle      = {\@firstname{}~\@lastname{}\notblank{\@title}{ -- \@title}{}},
+    pdftitle      =
+    {\@firstname{}~\@lastname{}\expandafter\notblank\expandafter{\@title}{ -- \@title}{}},  %\notblank does not expand argument automatically 
     pdfsubject    = {R\'{e}sum\'{e} of \@firstname{}~\@lastname{}},
     pdfkeywords   = {\@firstname{}~\@lastname{}, curriculum vit\ae{}, r\'{e}sum\'{e}}}}
 
@@ -259,6 +260,7 @@
       \ifthenelse{\equal{#1}{linkedin}}     {\collectionadd[linkedin]{socials}     {\protect\httpslink[#3]{www.linkedin.com/in/#3}}}               {}%
       \ifthenelse{\equal{#1}{xing}}         {\collectionadd[xing]{socials}         {\protect\httpslink[#3]{www.xing.com/profile/#3}}}              {}%
       \ifthenelse{\equal{#1}{twitter}}      {\collectionadd[twitter]{socials}      {\protect\httpslink[#3]{twitter.com/#3}}}                       {}%
+      \ifthenelse{\equal{#1}{mastodon}}     {\collectionadd[mastodon]{socials}     {\protect\httpslink[#3]{#3}}}                                   {}%
       \ifthenelse{\equal{#1}{github}}       {\collectionadd[github]{socials}       {\protect\httpslink[#3]{github.com/#3}}}                        {}%
       \ifthenelse{\equal{#1}{gitlab}}       {\collectionadd[gitlab]{socials}       {\protect\httpslink[#3]{gitlab.com/#3}}}                        {}%
       \ifthenelse{\equal{#1}{stackoverflow}}{\collectionadd[stackoverflow]{socials}{\protect\httpslink[#3]{stackoverflow.com/users/#3}}}           {}%
@@ -271,7 +273,8 @@
       \ifthenelse{\equal{#1}{whatsapp}}     {\collectionadd[whatsapp]{socials}     {\protect\httpslink[#3]{wa.me/#3}}}                             {}%
       \ifthenelse{\equal{#1}{signal}}       {\collectionadd[signal]{socials}       {#3}}                                                           {}%
       \ifthenelse{\equal{#1}{matrix}}       {\collectionadd[matrix]{socials}       {\httpslink[#3]{matrix.to/\#/#3}}}                              {}%
-      \ifthenelse{\equal{#1}{googlescholar}}{\collectionadd[googlescholar]{socials}{\protect\httpslink[#3]{scholar.google.com/citations?user=#3}}} {}%                        {}%
+      \ifthenelse{\equal{#1}{googlescholar}}{\collectionadd[googlescholar]{socials}{\protect\httpslink[#3]{scholar.google.com/citations?user=#3}}} {}%
+      \ifthenelse{\equal{#1}{codeberg}}     {\collectionadd[codeberg]{socials}     {\protect\httpslink[#3]{codeberg.org/#3}}}                      {}%
       }
     {\collectionadd[#1]{socials}{\protect\httpslink[#3]{#2}}}}%
 
@@ -312,6 +315,7 @@
 \newcommand*{\linkedinsocialsymbol}     {}
 \newcommand*{\xingsocialsymbol}         {}
 \newcommand*{\twittersocialsymbol}      {}
+\newcommand*{\mastodonsocialsymbol}     {}
 \newcommand*{\githubsocialsymbol}       {}
 \newcommand*{\gitlabsocialsymbol}       {}
 \newcommand*{\stackoverflowsocialsymbol}{}
@@ -325,6 +329,7 @@
 \newcommand*{\whatsappsocialsymbol}     {}
 \newcommand*{\matrixsocialsymbol}       {}
 \newcommand*{\signalsocialsymbol}       {}
+\newcommand*{\codebergsocialsymbol}     {}
 
 % other
 %------
